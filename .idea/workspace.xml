@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce24d7ae-5133-4b65-b706-2429535be6d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Part3/2.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Part3/3.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Part3/4.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Part3/5.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Part3/6.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part1/test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part1/test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part4/rws.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part4/rws.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part4/train.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part4/train.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +35,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2NKPBueeRQh9a6RLJjyMAkMCNUM" />
   <component name="ProjectLevelVcsManager">
@@ -78,7 +81,7 @@
       <updated>1679409668715</updated>
       <workItem from="1679409670595" duration="15107000" />
       <workItem from="1679470741994" duration="29136000" />
-      <workItem from="1679590624632" duration="52490000" />
+      <workItem from="1679590624632" duration="149541000" />
     </task>
     <servers />
   </component>
