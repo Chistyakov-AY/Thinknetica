@@ -1,5 +1,5 @@
-# require_relative 'p_train'
-# require_relative 'c_train'
+require_relative 'p_train'
+require_relative 'c_train'
 require_relative 'route_2'
 require_relative 'station_2'
 require_relative 'train_2'
