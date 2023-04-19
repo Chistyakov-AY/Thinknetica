@@ -2,10 +2,10 @@ require_relative 'train'
 require_relative 'station'
 require_relative 'route'
 
-t1 = Train.new(1, "pas", 11)
-t2 = Train.new(2, "cargo", 22)
-t3 = Train.new(3, "pas", 33)
-t4 = Train.new(4, "cargo", 44)
+t1 = Train2.new(1, "pas", 11)
+t2 = Train2.new(2, "cargo", 22)
+t3 = Train2.new(3, "pas", 33)
+t4 = Train2.new(4, "cargo", 44)
 s1 = Station.new("Vladik")
 s2 = Station.new("Omsk")
 s3 = Station.new("Moscow")
@@ -15,7 +15,10 @@ rt = Route.new(s1, s5)
 rt.add_station(s2)
 rt.add_station(s3)
 rt.add_station(s4)
-t1.assign_route(rt)
+
+puts "--------------"
+a = t1.assign_route(rt)
+puts a
 
 p "Поезд #{t1.number} прибыл на станцию #{s1.name}"
 

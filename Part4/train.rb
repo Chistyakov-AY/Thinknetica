@@ -1,4 +1,4 @@
-class Train
+class Train2
   # Имеет номер (произвольная строка) и тип (грузовой, пассажирский) и количество вагонов, эти данные
   # указываются при создании экземпляра класса
   attr_accessor :speed, :number_of_wagons # Может набирать скорость, может возвращать текущую скорость и
@@ -29,8 +29,8 @@ class Train
 
   # Может перемещаться между станциями, указанными в маршруте. Перемещение возможно вперед и назад,
   # но только на 1 станцию за раз.
-  def assign_route(rt)
-    @route = rt
+  def assign_route(route) # назначить
+    @route = route
     @station = @route.stations[0]
     @station.add_train(self)
     @current_station_index = 0
@@ -57,5 +57,4 @@ class Train
        Текущая - #{@route.stations[@current_station_index]&.name}
        Следующая - #{@route.stations[@current_station_index + 1]&.name}"
   end
-
 end
