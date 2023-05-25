@@ -6,9 +6,9 @@ class CargoTrain < Train
     @wagons = []
   end
 
-  def add_wagon(type)
+  def add_cargo_wagon(cwag)
     if (@speed == 0) && (type == "cargo")
-      @wagons << type
+      @wagons << cwag
     elsif (@speed == 0) && (type != "cargo")
       puts "Неверный тип вагона"
     else
