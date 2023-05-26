@@ -8,6 +8,6 @@ class PassengerTrain < Train
   end
 
   def add_pass_wagon(pwag)
-      @wagons << pwag
+    @wagons << pwag
   end
 end

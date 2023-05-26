@@ -1,11 +1,12 @@
 class CargoWagon
+  
   attr_reader :type
     
   def initialize
     @type = "cargo"
-    end
+  end
 
-  def add_cargo_wagon(cwag)
-    @wagons << cwag
+  def name
+    @type
   end
 end

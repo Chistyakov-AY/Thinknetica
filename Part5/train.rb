@@ -1,4 +1,5 @@
 class Train
+  
   attr_accessor :speed
   attr_reader :number, :type, :route, :wagons
 
@@ -18,11 +19,9 @@ class Train
   end
 
   def move_forward
-
-    
-    # station.send_train(self)
-    # @current_station_index += 1 if @current_station_index < @route.stations.size - 1
-    # station.add_train(self)
+    station.send_train(self)
+    @current_station_index += 1 if @current_station_index < @route.stations.size - 1
+    station.add_train(self)
   end
 
   def move_back
@@ -37,14 +36,17 @@ class Train
 
   def get_station
     puts "Предыдущая - #{@route.stations[@current_station_index - 1]&.name if @current_station_index > 0}
-       Текущая - #{@route.stations[@current_station_index]&.name}
-       Следующая - #{@route.stations[@current_station_index + 1]&.name}"
+    Текущая - #{@route.stations[@current_station_index]&.name}
+    Следующая - #{@route.stations[@current_station_index + 1]&.name}"
   end
 
   def del_wagon
     @wagons.delete_at(-1)
   end
 
+  def name
+    @number
+  end
 end
 
 
