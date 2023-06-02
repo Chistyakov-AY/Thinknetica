@@ -5,17 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce24d7ae-5133-4b65-b706-2429535be6d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Part5/c_train.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Part5/main.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Part5/p_train.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Part5/route_2.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Part5/station_2.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Part5/train_2.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Thinknetica.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Thinknetica.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Part1/8ball.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Part1/gallows/gallows.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Part1/gallows/main.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Part1/metods.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Part1/tasks.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Part1/tasks_2.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Part1/test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part1/test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part4/rws.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part4/main.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part4/train.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part4/train.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part5/c_train.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part5/cargo_train.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part5/main.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part5/main.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part5/p_train.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part5/passenger_train.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part5/route_2.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part5/route_2.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part5/train_2.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Part5/train_2.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +241,12 @@
       <workItem from="1679470741994" duration="29136000" />
       <workItem from="1679590624632" duration="163588000" />
       <workItem from="1681801085990" duration="11347000" />
-      <workItem from="1681914058222" duration="2041000" />
+      <workItem from="1681914058222" duration="36386000" />
+      <workItem from="1682089807600" duration="133000" />
+      <workItem from="1682089977210" duration="687000" />
+      <workItem from="1682279838218" duration="370000" />
+      <workItem from="1682678156473" duration="14000" />
+      <workItem from="1682935842091" duration="42000" />
     </task>
     <servers />
   </component>
