@@ -10,5 +10,4 @@ class Wagon
   def name
     @type
   end
-
 end
