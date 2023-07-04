@@ -5,7 +5,7 @@ class Train
   attr_accessor :speed, :type
   attr_reader :number, :route, :wagons
 
-  NUMBER_FORMAT = /^\w{3}.\w{2}$/i
+  NUMBER_FORMAT = /^\w{3}(-|)\w{2}$/i
 
   class << self
     @@all_trains = []
@@ -20,7 +20,6 @@ class Train
   end
 
   def initialize(speed = 0)
-    get_number
     @speed = speed
     @type = ""
     @wagons = []
@@ -28,24 +27,18 @@ class Train
     register_instance
   end
 
-  def get_number
-    puts "Введите номер поезда в формате: \"три буквы/цифры - две буквы/цифры\""
-    name = gets.chomp
-    validate(name)
-    puts "Создан новый поезд #{@name}.\n\n"
-  end
-
-  def valid?(number)
-    raise "Название поезда не может быть пустым" if number == ""
-    raise "Неправильный формат номера поезда" if number !~ NUMBER_FORMAT
+  def valid?(name)
+    @number = validate(name)
+    true
+  rescue RuntimeError => e
+    puts e.message
+    false
   end
 
   def validate(name)
-    valid?(name)
-    @number = name
-  rescue RuntimeError => e
-    puts e.message
-    validate(gets.chomp) 
+    raise "Название поезда не может быть пустым" if name == ""
+    raise "Неправильный формат номера поезда" if name !~ NUMBER_FORMAT
+    name
   end
 
   def add_wagons(type)

@@ -55,7 +55,12 @@ class Menu
 
     case menu
     when "1" #create_station
-      @stations << Station.new
+      puts "Введите название станции."
+      station = Station.new
+      until station.valid?(gets.chomp)
+      end
+      puts "Создан новая станция #{station}.\n\n"
+      @stations << station
     when "2" #create_train
       puts "Какой поезд хотите создать?
       1. Пассажирский, введите 1
@@ -64,9 +69,19 @@ class Menu
 
       case num
       when "1" #create_pass_train
-        @trains << PassengerTrain.new
+        puts "Введите номер поезда в формате: \"три буквы/цифры - две буквы/цифры\""
+        pass_train = PassengerTrain.new
+        until pass_train.valid?(gets.chomp)
+        end
+        puts "Создан новый поезд #{pass_train}.\n\n"
+        @trains << pass_train
       when "2" #create_cargo_train
-        @trains << CargoTrain.new
+        puts "Введите номер поезда в формате: \"три буквы/цифры - две буквы/цифры\""
+        cargo_train = CargoTrain.new
+        until cargo_train.valid?(gets.chomp)
+        end
+        puts "Создан новый поезд #{cargo_train}.\n\n"
+        @trains << cargo_train
       end
 
     when "3" # create_route
@@ -99,11 +114,11 @@ class Menu
       when "1" #create_pass_wagon
         pwag = PassengerWagon.new
         @pass_wagons << pwag
-        puts "Создан вагон #{pwag.type}\nВсе грузовые вагоны: #{@pass_wagons.map(&:type)}\n\n"
+        puts "Создан вагон #{pwag.type}\nВсе пассажирские вагоны: #{@pass_wagons.map(&:type)}\n\n"
       when "2" #create_cargo_wagon
         cwag = CargoWagon.new
         @cargo_wagons << cwag
-        puts "Создан вагон #{cwag.type}\nВсе пассажирские вагоны: #{@cargo_wagons.map(&:type)}\n\n"
+        puts "Создан вагон #{cwag.type}\nВсе грузовые вагоны: #{@cargo_wagons.map(&:type)}\n\n"
       end
     end
   end

@@ -6,29 +6,22 @@ class Station
   @@all_stations = []
 
   def initialize
-    get_name
     @trains = []
     @@all_stations << self
     register_instance
   end
 
-  def get_name
-    puts "Введите название станции."
-    name = gets.chomp
-    validate(name)
-    puts "Создан новая станция #{@name}.\n\n"
-  end
-
   def valid?(name)
-    raise "Название станции не может быть пустым" if name == ""
+    @name = validate(name)
+    true
+  rescue RuntimeError => e
+    puts e.message
+    false
   end
 
   def validate(name)
-    valid?(name)
-    @name = name
-  rescue RuntimeError => e
-    puts e.message
-    validate(gets.chomp) 
+    raise "Название станции не может быть пустым" if name == ""
+    name
   end
 
   def self.all
