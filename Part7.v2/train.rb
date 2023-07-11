@@ -29,18 +29,6 @@ class Train
     register_instance
   end
 
-  # def valid?(name)
-  #   @number = validate(name)
-  #   true
-  # rescue RuntimeError => e
-  #   puts e.message
-  #   false
-  # end
-
-  # def validate!
-  #   raise "not valid format" unless ["passenger", "cargo"].include?(@type)
-  # end
-
   def validate!(number)
     raise "Номер поезда не может быть пустым" if number == ""
     raise "Неправильный формат номера поезда" if number !~ NUMBER_FORMAT

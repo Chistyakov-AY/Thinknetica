@@ -159,23 +159,6 @@ class Menu
     create_menu
   end
 
-  # def passenger_train
-  #   attempt = 0
-  #   begin
-  #     puts 'Введите название пассажирского поезда (пример ввода: "aaa-aa"):'
-  #     name = gets.strip
-  #     train = PassengerTrain.new(name)
-  #   rescue ArgumentError => e
-  #     attempt += 1
-  #     puts "#{e.inspect} Ошибка!!! Попробуйте ещё раз"
-  #     retry if attempt < 3
-  #     create_menu
-  #   end
-  #   @trains << train
-  #   puts 'Пассажирский поезд успешно создан'
-  #   create_menu
-  # end
-
   def action_menu
     puts "Введите 1, если вы хотите добавить или удалить станцию в маршруте"
     puts "Введите 2, если вы хотите назначить маршрут поезду"
