@@ -5,21 +5,15 @@ class Station
 
   @@all_stations = []
 
-  def initialize
+  def initialize(name)
+    @name = name
+    validate!
     @trains = []
     @@all_stations << self
     register_instance
   end
 
-  def valid?(name)
-    @name = validate(name)
-    true
-  rescue RuntimeError => e
-    puts e.message
-    false
-  end
-
-  def validate(name)
+  def validate!
     raise "Название станции не может быть пустым" if name == ""
     name
   end

@@ -54,13 +54,8 @@ class Menu
     menu = get_command
 
     case menu
-    when "1" #create_station
-      puts "Введите название станции."
-      station = Station.new
-      until station.valid?(gets.chomp)
-      end
-      puts "Создан новая станция #{station.inspect}.\n\n"
-      @stations << station
+    when "1" 
+      create_station
     when "2" #create_train
       puts "Какой поезд хотите создать?
       1. Пассажирский, введите 1
@@ -68,20 +63,10 @@ class Menu
       num = get_command
 
       case num
-      when "1" #create_pass_train
-        puts "Введите номер поезда в формате: \"три буквы/цифры - две буквы/цифры\""
-        pass_train = PassengerTrain.new
-        until pass_train.valid?(gets.chomp)
-        end
-        puts "Создан новый поезд #{pass_train}.\n\n"
-        @trains << pass_train
-      when "2" #create_cargo_train
-        puts "Введите номер поезда в формате: \"три буквы/цифры - две буквы/цифры\""
-        cargo_train = CargoTrain.new
-        until cargo_train.valid?(gets.chomp)
-        end
-        puts "Создан новый поезд #{cargo_train}.\n\n"
-        @trains << cargo_train
+      when "1" 
+        create_pass_train
+      when "2" 
+        create_cargo_train
       end
 
     when "3" # create_route
@@ -122,6 +107,74 @@ class Menu
       end
     end
   end
+
+  def create_station
+    puts "Введите название станции."
+    attempt = 0
+    begin
+      name = gets.chomp
+      station = Station.new(name)
+    rescue RuntimeError => e
+      attempt += 1
+      puts e
+      retry if attempt < 3
+      create_menu
+    end
+    puts "Создана новая станция #{station.inspect}.\n\n"
+    @stations << station
+    create_menu
+  end
+    
+  def create_pass_train
+    puts "Введите номер поезда в формате: \"три буквы/цифры - две буквы/цифры\""
+    attempt = 0
+    begin
+      number = gets.chomp
+      pass_train = PassengerTrain.new(number)
+    rescue RuntimeError => e
+      attempt += 1
+      puts e
+      retry if attempt < 3
+      create_menu
+    end
+    puts "Создан новый поезд #{pass_train.inspect}.\n\n"
+    @trains << pass_train
+    create_menu
+  end
+
+  def create_cargo_train
+    puts "Введите номер поезда в формате: \"три буквы/цифры - две буквы/цифры\""
+    begin
+      attempt = 0
+      number = gets.chomp
+      cargo_train = CargoTrain.new(number)
+    rescue RuntimeError => e
+      attempt += 1
+      puts e
+      retry if attempt < 3
+      create_menu
+    end
+    puts "Создан новый поезд #{cargo_train.inspect}.\n\n"
+    @trains << cargo_train
+    create_menu
+  end
+
+  # def passenger_train
+  #   attempt = 0
+  #   begin
+  #     puts 'Введите название пассажирского поезда (пример ввода: "aaa-aa"):'
+  #     name = gets.strip
+  #     train = PassengerTrain.new(name)
+  #   rescue ArgumentError => e
+  #     attempt += 1
+  #     puts "#{e.inspect} Ошибка!!! Попробуйте ещё раз"
+  #     retry if attempt < 3
+  #     create_menu
+  #   end
+  #   @trains << train
+  #   puts 'Пассажирский поезд успешно создан'
+  #   create_menu
+  # end
 
   def action_menu
     puts "Введите 1, если вы хотите добавить или удалить станцию в маршруте"
