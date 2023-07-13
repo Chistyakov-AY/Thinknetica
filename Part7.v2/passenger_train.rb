@@ -2,9 +2,6 @@ class PassengerTrain < Train
   def initialize(speed = 0)
     super
     @type = "pass"
-  end
-
-  def add_pass_wagon(pwag)
-    @wagons << pwag
+    validate!
   end
 end

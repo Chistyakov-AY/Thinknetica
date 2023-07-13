@@ -5,7 +5,12 @@ class Route
 
   def initialize(start, finish)
     @stations = [start, finish]
+    validate!
     register_instance
+  end
+
+  def validate!
+    raise "Тип обьекта не является экземляром класса Station" unless @stations.all? {|s| s.class == Station} 
   end
 
   def add_station(st)

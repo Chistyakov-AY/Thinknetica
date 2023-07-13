@@ -15,7 +15,6 @@ class Station
 
   def validate!
     raise "Название станции не может быть пустым" if name == ""
-    name
   end
 
   def self.all

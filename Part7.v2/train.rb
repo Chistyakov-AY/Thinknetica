@@ -5,8 +5,6 @@ class Train
   attr_accessor :speed, :type
   attr_reader :number, :route, :wagons
 
-  NUMBER_FORMAT = /^\w{3}(-|)\w{2}$/i
-
   class << self
     @@all_trains = []
 
@@ -21,7 +19,6 @@ class Train
 
   def initialize(number, speed = 0)
     @number = number
-    validate!(number)
     @speed = speed
     @type = type
     @wagons = []
@@ -29,15 +26,13 @@ class Train
     register_instance
   end
 
-  def validate!(number)
-    raise "Номер поезда не может быть пустым" if number == ""
-    raise "Неправильный формат номера поезда" if number !~ NUMBER_FORMAT
-    number
-  end
-
   def add_wagons(type)
     add_wagon(type)
     end
+
+  def add_wagon(pwag)
+    @wagons << pwag
+  end
 
   def delete_wagon
     del_wagon
