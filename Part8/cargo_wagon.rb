@@ -1,16 +1,13 @@
 class CargoWagon < Wagon
-  def initialize(total_volume)
+  def initialize(total_place)
     @type = "cargo"
     super
-    @total_volume = total_volume
-    @used_volume = 0
-    validate!
   end
 
   def take_place(volume)
-    if @total_volume > 0 && @total_volume >= volume
-      @total_volume = @total_volume - volume
-      @used_volume = @used_volume + volume
+    if free_place >= volume
+      @used_place += volume
+      @total_place -= volume
     else
       puts "Проверьте объем!\n\n"
     end

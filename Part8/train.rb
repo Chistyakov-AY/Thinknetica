@@ -71,10 +71,6 @@ class Train
     @wagons.delete_at(-1)
   end
 
-  def name
-    @number
-  end
-
   def wagons_block(wagons, &block)
     block.call(wagons)
   end
@@ -86,8 +82,8 @@ class Train
           puts "Номер вагона: #{number += 1} || Свободно: #{i.total_place} || " \
           "Занято: #{i.used_place}"
         else
-          puts "Номер вагона: #{number += 1} || Свободно: #{i.total_volume} ||" \
-          "Занято: #{i.used_volume}"
+          puts "Номер вагона: #{number += 1} || Свободно: #{i.total_place} ||" \
+          "Занято: #{i.used_place}"
         end
       end
     end

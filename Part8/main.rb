@@ -257,7 +257,6 @@ class Menu
         initial_menu
       end
     @wagons << pwag
-    #puts "Создан вагон #{pwag.inspect}\nВсе пассажирские вагоны: #{@wagons.map(&:type)}\n\n"
     puts "Создан пассажирский вагон #{pwag.inspect}\nВсе вагоны:\n"
     enumeration(@wagons)
     puts
@@ -267,8 +266,8 @@ class Menu
     puts "Какое объем вагона?" 
     attempt = 0
       begin
-        total_volume = gets.chomp.to_i
-        cwag = CargoWagon.new(total_volume)
+        total_place = gets.chomp.to_i
+        cwag = CargoWagon.new(total_place)
       rescue RuntimeError => e
         attempt += 1
         puts e
@@ -276,7 +275,6 @@ class Menu
         initial_menu
       end
     @wagons << cwag
-    #puts "Создан грузовой вагон #{cwag.inspect}\nВсе вагоны: #{@wagons.map(&:type)}\n\n"
     puts "Создан грузовой вагон #{cwag.inspect}\nВсе вагоны:\n"
     enumeration(@wagons)
     puts
@@ -333,7 +331,7 @@ class Menu
       name = get_command.to_i
       st = @rt.stations[name - 1]
       st.trains << tr
-      puts "\nПоезд #{tr.name} назначен на маршрут #{@rt}\n\n"
+      puts "\nПоезд #{tr.number} назначен на маршрут #{@rt}\n\n"
     end
   end
 
@@ -431,7 +429,7 @@ class Menu
         puts "Какой объем хотите занять?"
         volume = gets.chomp.to_i
         wagon.take_place(volume)
-        puts "В вагоне свободный объем - #{wagon.total_volume}, занятый объем - #{wagon.used_volume}\n\n"
+        puts "В вагоне свободный объем - #{wagon.total_place}, занятый объем - #{wagon.used_place}\n\n"
         initial_menu
       else 
         puts "Это не грузовой вагон!\n\n"
@@ -442,7 +440,6 @@ class Menu
   def stations_view
     puts "Cписок всех станций с поездами на них:"
     enumeration(@stations)
-    p @stations
     puts
   end
 
@@ -463,7 +460,7 @@ class Menu
     enumeration(@trains)
     train = gets.chomp.to_i
     selected_train = @trains[train - 1]
-    puts "Вы выбрали поезд: #{selected_train.name}"
+    puts "Вы выбрали поезд: #{selected_train.number}"
     selected_train.wagon_each
     puts
     initial_menu
