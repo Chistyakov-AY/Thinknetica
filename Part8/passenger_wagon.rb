@@ -5,7 +5,7 @@ class PassengerWagon < Wagon
   end
   
   def take_place
-    if free_place > 0
+    if free_place > 0 && free_place <= total_place
       @used_place += 1
       @total_place -= 1
     else

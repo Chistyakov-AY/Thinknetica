@@ -16,6 +16,6 @@ class Wagon
 
   def validate!
     raise "Неправильный тип вагона" unless ["pass", "cargo"].include?(type)
-    raise "Значение не должно равняться 0" if @total_place == 0
+    raise "Значение не должно равняться 0" if total_place == 0
   end
 end

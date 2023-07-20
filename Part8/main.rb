@@ -10,7 +10,7 @@ require_relative 'cargo_train'
 require './cargo_wagon.rb'
 
 class Menu 
-  attr_reader :last_command, :wagons
+  attr_reader :last_command, :wagons, :trains, :stations, :routes
 
   def initialize
     @stations = []
@@ -100,50 +100,50 @@ class Menu
   def create_all_object
     puts "Созданные станции:"
     3.times do |x|
-      @stations << Station.new(x += 1)
+      stations << Station.new(x += 1)
     end
-    enumeration(@stations)
+    enumeration(stations)
     puts
     puts "Созданные поезда:"
     pass_train = PassengerTrain.new("pas-11")
-    @trains << pass_train
+    trains << pass_train
     pass_train = PassengerTrain.new("pas-22")
-    @trains << pass_train
+    trains << pass_train
     cargo_train = CargoTrain.new("car-11")
-    @trains << cargo_train
+    trains << cargo_train
     cargo_train = CargoTrain.new("car-22")
-    @trains << cargo_train
-    enumeration(@trains)
+    trains << cargo_train
+    enumeration(trains)
     puts
     puts "Созданные вагоны:"
     2.times do |x|
-      @wagons << PassengerWagon.new((x + 1) * 10)
+      wagons << PassengerWagon.new((x + 1) * 10)
     end
     2.times do |x|
-      @wagons << CargoWagon.new((x + 1) * 100)
+      wagons << CargoWagon.new((x + 1) * 100)
     end
-    enumeration(@wagons)
+    enumeration(wagons)
     puts
     puts "Создан новый машрут:"
-    @rt = Route.new(@stations[0], @stations[2])
-    @routes << @rt
-    @rt.add_station(@stations[1])
-    @rt.route_name
+    rt = Route.new(stations[0], stations[2])
+    routes << rt
+    rt.add_station(stations[1])
+    rt.route_name
     puts "\n\n"
     puts "К поездам прицеплены все вагоны:"
-    @trains[0].add_wagon(@wagons[0])
-    @trains[0].add_wagon(@wagons[1])
-    @trains[2].add_wagon(@wagons[2])
-    @trains[3].add_wagon(@wagons[3])
-    @wagons.clear
-    enumeration(@trains)
+    trains[0].add_wagon(wagons[0])
+    trains[0].add_wagon(wagons[1])
+    trains[2].add_wagon(wagons[2])
+    trains[3].add_wagon(wagons[3])
+    wagons.clear
+    enumeration(trains)
     puts
     puts "Все поезда назначены на станции:"
-    @stations[0].trains << @trains[0]
-    @stations[0].trains << @trains[1]
-    @stations[1].trains << @trains[2]
-    @stations[2].trains << @trains[3]
-    enumeration(@stations)
+    stations[0].trains << trains[0]
+    stations[0].trains << trains[1]
+    stations[1].trains << trains[2]
+    stations[2].trains << trains[3]
+    enumeration(stations)
     puts "\n\n"
 
   end
@@ -162,7 +162,7 @@ class Menu
       initial_menu
     end
     puts "Создана новая станция #{station.inspect}.\n\n"
-    @stations << station
+    stations << station
     initial_menu
   end
     
@@ -191,7 +191,7 @@ class Menu
       initial_menu
     end
       puts "Создан новый поезд #{pass_train.inspect}.\n\n"
-      @trains << pass_train
+      trains << pass_train
       initial_menu
   end
 
@@ -208,24 +208,24 @@ class Menu
       initial_menu
     end
     puts "Создан новый поезд #{cargo_train.inspect}.\n\n"
-    @trains << cargo_train
+    trains << cargo_train
     initial_menu
   end
   
   def create_route
-    if @stations.size >= 2
+    if stations.size >= 2
       puts "Список созданных станций:"
-      enumeration(@stations)
+      enumeration(stations)
       puts "Введите начальную станцию маршрута"
       start = get_command.to_i
-      st1 = @stations[start - 1]
+      st1 = stations[start - 1]
       puts "Введите конечную станцию маршрута"
       finish = get_command.to_i
-      st2 = @stations[finish - 1]
-      @rt = Route.new(st1, st2)
-      @routes << @rt
+      st2 = stations[finish - 1]
+      rt = Route.new(st1, st2)
+      routes << rt
       puts "Создан новый маршрут: "
-      @rt.route_name
+      rt.route_name
       puts "\n\n"
     else
       puts "Для начала необходимо создать минимум 2 станции!!!\n\n"
@@ -256,9 +256,9 @@ class Menu
       retry if attempt < 3
         initial_menu
       end
-    @wagons << pwag
+    wagons << pwag
     puts "Создан пассажирский вагон #{pwag.inspect}\nВсе вагоны:\n"
-    enumeration(@wagons)
+    enumeration(wagons)
     puts
   end
 
@@ -274,9 +274,9 @@ class Menu
       retry if attempt < 3
         initial_menu
       end
-    @wagons << cwag
+    wagons << cwag
     puts "Создан грузовой вагон #{cwag.inspect}\nВсе вагоны:\n"
-    enumeration(@wagons)
+    enumeration(wagons)
     puts
   end
 
@@ -286,30 +286,30 @@ class Menu
     
     case action
     when "1" #todo добавление станции в конкретное место и добавление из списка станций.
-      if @rt == nil
+      if rt == nil
         puts "Сначала необходимо создать маршрут.\n\n"
       else
         puts "Какую станцию хотите добавить в маршрут?"
-        enumeration(@stations)
+        enumeration(stations)
         num = get_command.to_i
-        @rt.add_station(@stations[num - 1])
+        rt.add_station(stations[num - 1])
         puts "Новый маршрут:"
-        @rt.route_name
+        rt.route_name
         puts "\n\n"
       end
     when "2" 
-      if @rt == nil
+      if rt == nil
         puts "Сначала необходимо создать маршрут.\n\n"
       else 
-        if @rt.stations.size <= 2
+        if rt.stations.size <= 2
           puts "В маршруте не может быть меньше 2ух станций!\n\n"
         else
           puts "Какую станцию Вы хотите удалить из маршрута?"
-          enumeration(@rt.stations)
+          enumeration(rt.stations)
           num = get_command.to_i
-          @rt.del_station(@rt.stations[num - 1])
+          rt.del_station(rt.stations[num - 1])
           puts "Новый маршрут:"
-          @rt.route_name
+          rt.route_name
           puts "\n\n"
         end
       end
@@ -317,29 +317,29 @@ class Menu
   end   
 
   def assign_train_route
-    if @rt == nil
+    if rt == nil
       puts "Необхоимо создать маршрут!\n\n"
     else
       puts "Какой поезд хотите назначить на маршрут?"
-      enumeration(@trains)
+      enumeration(trains)
       name = get_command.to_i
-      tr = @trains[name - 1]
-      tr.assign_route(@rt)
+      tr = trains[name - 1]
+      tr.assign_route(rt)
       puts "Поезд #{tr.number}\n\n"
       puts "На какую станцию назначить поезд?"
-      enumeration(@rt.stations)
+      enumeration(rt.stations)
       name = get_command.to_i
-      st = @rt.stations[name - 1]
+      st = rt.stations[name - 1]
       st.trains << tr
-      puts "\nПоезд #{tr.number} назначен на маршрут #{@rt}\n\n"
+      puts "\nПоезд #{tr.number} назначен на маршрут #{rt}\n\n"
     end
   end
 
   def to_forward_and_back_station
     puts "Какой поезд необходимо переместить?"
-    enumeration(@trains)
+    enumeration(trains)
     name = get_command.to_i
-    tr = @trains[name - 1]
+    tr = trains[name - 1]
     puts "Для перемещения вы выбрали поезд #{tr.number}\n\n"
     puts "Выберите 1, если хотите переместиться по маршруту вперед"
     puts "Выберите 2, если хотите переместиться по маршруту назад"
@@ -349,10 +349,10 @@ class Menu
     case name
     when "1"
       tr.move_forward
-      puts "Поезд на новой станции. Маршрут #{@rt.name}.\n\n"
+      puts "Поезд на новой станции. Маршрут #{rt.name}.\n\n"
     when "2"
       tr.move_back
-      puts "Поезд на новой станции. Маршрут #{@rt.name}.\n\n"
+      puts "Поезд на новой станции. Маршрут #{rt.name}.\n\n"
     end
   end
 
@@ -362,20 +362,20 @@ class Menu
     
     case menu
     when "1"      
-      if @trains.empty? || @wagons.empty?
+      if trains.empty? || wagons.empty?
         puts "Сначала необходимо создать обьекты!\n\n"
       else
         puts "К какому поезду хотите прицепить вагон?"
-        enumeration(@trains)
+        enumeration(trains)
         name = get_command.to_i
-        tr = @trains[name - 1]
+        tr = trains[name - 1]
         puts "Выберите вагон, который необходимо прицепить:"
-        enumeration(@wagons)
+        enumeration(wagons)
         name = get_command.to_i
-        wg = @wagons[name - 1]
+        wg = wagons[name - 1]
         if wg.type == tr.type
           tr.add_wagon(wg)
-          @wagons.delete(wg)
+          wagons.delete(wg)
           puts "К поезду #{tr.number} прицеплен пассажирский вагон #{wg.inspect}.\n\n" 
         else
           puts "Вагон не соответствует типу поезда!\n\n"
@@ -385,9 +385,9 @@ class Menu
 
     when "2"
       puts "От какого поезда хотите отцепить вагон?"
-      enumeration(@trains)
+      enumeration(trains)
       name = get_command.to_i
-      tr = @trains[name - 1]
+      tr = trains[name - 1]
       if tr.wagons.empty? 
         puts "У поезда #{tr.number} нет прицепленных вагонов.\n\n"
       else
@@ -398,7 +398,7 @@ class Menu
   end
 
   def seats_and_volume_in_the_wagon
-    if @wagons.empty?
+    if wagons.empty?
       puts "Сначала необходимо создать вагон(ы)!\n\n"
       initial_menu
     else
@@ -409,9 +409,9 @@ class Menu
     case num
     when "1" 
       puts "Выберите вагон, в котором хотите занять место:"
-      enumeration(@wagons)
+      enumeration(wagons)
       num = gets.chomp.to_i
-      wagon = @wagons[num - 1]
+      wagon = wagons[num - 1]
         if wagon.type == "pass"
           wagon.take_place
           puts "В вагоне свобдных мест - #{wagon.total_place}, занятых - #{wagon.used_place}\n\n"
@@ -422,9 +422,9 @@ class Menu
 
     when "2" 
       puts "Выберите вагон, в котором хотите занять объем:"
-      enumeration(@wagons)
+      enumeration(wagons)
       num = gets.chomp.to_i
-      wagon = @wagons[num - 1]
+      wagon = wagons[num - 1]
       if wagon.type == "cargo"
         puts "Какой объем хотите занять?"
         volume = gets.chomp.to_i
@@ -439,15 +439,15 @@ class Menu
 
   def stations_view
     puts "Cписок всех станций с поездами на них:"
-    enumeration(@stations)
+    enumeration(stations)
     puts
   end
 
   def show_trains_at_the_station
     puts "На какой станции хотите просмотреть список поездов?"
-    enumeration(@stations)
+    enumeration(stations)
     station = gets.chomp.to_i
-    selected_station = @stations[station - 1]
+    selected_station = stations[station - 1]
     puts "Вы выбрали станцию: #{selected_station.name}.\n\n"
     puts 'Список поездов:'
     selected_station.trains_each
@@ -457,9 +457,9 @@ class Menu
 
   def show_wagons_at_the_train
     puts 'У какого поезда хотите посмотреть список вагонов'
-    enumeration(@trains)
+    enumeration(trains)
     train = gets.chomp.to_i
-    selected_train = @trains[train - 1]
+    selected_train = trains[train - 1]
     puts "Вы выбрали поезд: #{selected_train.number}"
     selected_train.wagon_each
     puts
