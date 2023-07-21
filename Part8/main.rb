@@ -414,7 +414,7 @@ class Menu
       wagon = wagons[num - 1]
         if wagon.type == "pass"
           wagon.take_place
-          puts "В вагоне свобдных мест - #{wagon.total_place}, занятых - #{wagon.used_place}\n\n"
+          puts "В вагоне свобдных мест - #{wagon.free_place}, занятых - #{wagon.used_place}\n\n"
           initial_menu
         else 
           puts "У вагона нет пассажирских мест\n\n"
@@ -429,7 +429,7 @@ class Menu
         puts "Какой объем хотите занять?"
         volume = gets.chomp.to_i
         wagon.take_place(volume)
-        puts "В вагоне свободный объем - #{wagon.total_place}, занятый объем - #{wagon.used_place}\n\n"
+        puts "В вагоне свободный объем - #{wagon.free_place}, занятый объем - #{wagon.used_place}\n\n"
         initial_menu
       else 
         puts "Это не грузовой вагон!\n\n"

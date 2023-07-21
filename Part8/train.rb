@@ -79,10 +79,10 @@ class Train
     wagons_block(@wagons) do |x| number = 0
       x.each do |i|
         if i.type == "pass"
-          puts "Номер вагона: #{number += 1} || Свободно: #{i.total_place} || " \
+          puts "Номер вагона: #{number += 1} || Тип вагона: #{i.type} || Свободно: #{i.free_place} || " \
           "Занято: #{i.used_place}"
         else
-          puts "Номер вагона: #{number += 1} || Свободно: #{i.total_place} ||" \
+          puts "Номер вагона: #{number += 1} || Тип вагона: #{i.type} || Свободно: #{i.free_place} ||" \
           "Занято: #{i.used_place}"
         end
       end

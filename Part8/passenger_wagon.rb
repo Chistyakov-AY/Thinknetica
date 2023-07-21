@@ -5,9 +5,8 @@ class PassengerWagon < Wagon
   end
   
   def take_place
-    if free_place > 0 && free_place <= total_place
+    if free_place > 0 && free_place >= used_place
       @used_place += 1
-      @total_place -= 1
     else
       puts "В вагоне нет свободных мест!"
     end
