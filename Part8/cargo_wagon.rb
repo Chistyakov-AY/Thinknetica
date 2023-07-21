@@ -6,7 +6,7 @@ class CargoWagon < Wagon
   end
 
   def take_place(volume)
-    if free_place >= volume
+    if volume <= @total_place
       @used_place += volume
     else
       puts "Проверьте объем!\n\n"
