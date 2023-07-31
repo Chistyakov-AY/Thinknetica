@@ -1,7 +1,7 @@
 class Train
   include CompanyName
   include InstanceCounter
-  
+
   attr_accessor :speed, :type
   attr_reader :number, :route, :wagons
 
@@ -13,7 +13,7 @@ class Train
     end
 
     def find(number)
-      @@all_trains.select {|index| index.number == "#{number}"}
+      @@all_trains.select { |index| index.number == number.to_s }
     end
   end
 
@@ -28,7 +28,7 @@ class Train
 
   def add_wagons(type)
     add_wagon(type)
-    end
+  end
 
   def add_wagon(pwag)
     @wagons << pwag
@@ -61,10 +61,11 @@ class Train
     @route.stations[@current_station_index]
   end
 
-  def get_station
-    puts "Предыдущая - #{@route.stations[@current_station_index - 1]&.name if @current_station_index > 0}
-    Текущая - #{@route.stations[@current_station_index]&.name}
-    Следующая - #{@route.stations[@current_station_index + 1]&.name}"
+  def accept_station
+    puts 'Предыдущая - ' \
+         "#{@route.stations[@current_station_index - 1]&.name if @current_station_index.positive?}
+         Текущая - #{@route.stations[@current_station_index]&.name}
+         Следующая - #{@route.stations[@current_station_index + 1]&.name}"
   end
 
   def del_wagon
@@ -76,20 +77,12 @@ class Train
   end
 
   def wagon_each
-    wagons_block(@wagons) do |x| number = 0
-      x.each do |i|
-        if i.type == "pass"
-          puts "Номер вагона: #{number += 1} || Тип вагона: #{i.type} || Свободно: #{i.free_place} || " \
-          "Занято: #{i.used_place}"
-        else
-          puts "Номер вагона: #{number += 1} || Тип вагона: #{i.type} || Свободно: #{i.free_place} ||" \
-          "Занято: #{i.used_place}"
-        end
-      end
+    wagons_block(@wagons) do |x|
+      number = 0
+    x.each do |i|
+      puts "Номер вагона: #{number += 1} || Тип вагона: #{i.type} ||" \
+           "Свободно: #{i.free_place} || Занято: #{i.used_place}"
+    end
     end
   end
 end
-
-
-
-

@@ -2,7 +2,7 @@ class Wagon
   include InstanceCounter
   include CompanyName
   attr_reader :type, :total_place, :used_place
-  
+
   def initialize(total_place)
     @total_place = total_place
     @used_place = 0
@@ -15,7 +15,8 @@ class Wagon
   end
 
   def validate!
-    raise "Неправильный тип вагона" unless ["pass", "cargo"].include?(type)
-    raise "Значение не должно равняться 0" if total_place == 0
+    wagon_type = %w[pass cargo]
+    raise 'Неправильный тип вагона' unless wagon_type.include?(type)
+    raise 'Значение не должно равняться 0' if total_place.zero?
   end
 end

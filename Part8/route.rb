@@ -10,7 +10,7 @@ class Route
   end
 
   def validate!
-    raise "Тип обьекта не является экземляром класса Station" unless stations.all? {|s| s.class == Station} 
+    raise 'Обьект не экземляр класса Station' unless stations.all? { |s| s.instance_of?(Station) }
   end
 
   def add_station(st)
@@ -29,5 +29,6 @@ class Route
     stations.each_index do |index|
       print " - #{stations[index].name} - "
     end
+    puts
   end
 end

@@ -1,5 +1,4 @@
-module CompanyName 
-  
+module CompanyName
   def company_name(name)
     @company_name = name
   end

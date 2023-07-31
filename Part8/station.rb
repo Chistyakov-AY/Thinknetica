@@ -14,13 +14,13 @@ class Station
   end
 
   def validate!
-    raise "Название станции не может быть пустым" if name == ""
+    raise 'Название станции не может быть пустым' if name == ''
   end
 
   def self.all
     @@all_stations
   end
-  
+
   def add_train(train)
     trains << train
   end
@@ -30,7 +30,7 @@ class Station
   end
 
   def trains_by_type(type)
-    trains.select {|i| i.type == type}
+    trains.select { |i| i.type == type }
   end
 
   def trains_block(trains, &block)

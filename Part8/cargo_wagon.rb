@@ -1,7 +1,6 @@
 class CargoWagon < Wagon
-
   def initialize(total_place)
-    @type = "cargo"
+    @type = 'cargo'
     super
   end
 
