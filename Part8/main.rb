@@ -98,7 +98,7 @@ class Menu
   end
 
   #---------------------------------------------------------------------
-  def create_all_object
+  def create_all_object # rubocop:disable Metrics/AbcSize
     puts 'Созданные станции:'
     2.times { |x| stations << Station.new(x + 1) }
     enumeration(stations)
@@ -202,7 +202,7 @@ class Menu
     initial_menu
   end
 
-  def create_route
+  def create_route # rubocop:disable Metrics/AbcSize
     if stations.size >= 2
       puts 'Список созданных станций:'
       enumeration(stations)
@@ -276,11 +276,11 @@ class Menu
 
     case action
     when '1' then add_stations
-    when '2' then del_stations
+    when '2' then puts(del_stations)
     end
   end
 
-  def add_stations
+  def add_stations # rubocop:disable Metrics/AbcSize
     if rt.nil?
       puts "Сначала необходимо создать маршрут.\n\n"
     else
@@ -296,21 +296,23 @@ class Menu
 
   def del_stations
     if rt.nil?
-      puts "Сначала необходимо создать маршрут.\n\n"
+      "Сначала необходимо создать маршрут.\n\n"
     elsif rt.stations.size <= 2
-      puts "В маршруте не может быть меньше 2ух станций!\n\n"
+      "В маршруте не может быть меньше 2ух станций!\n\n"
     else
       puts 'Какую станцию Вы хотите удалить из маршрута?'
-        enumeration(rt.stations)
-        num = accept_command.to_i
-        rt.del_station(rt.stations[num - 1])
-        puts 'Новый маршрут:'
-        rt.route_name
-        puts "\n\n"
+      new_route
     end
   end
 
-  def assign_train_route
+  def new_route
+    enumeration(rt.stations)
+    num = accept_command.to_i
+    rt.del_station(rt.stations[num - 1])
+    "Новый маршрут: #{rt.route_name}\n\n"
+  end
+
+  def assign_train_route # rubocop:disable Metrics/AbcSize
     if rt.nil?
       puts "Необхоимо создать маршрут!\n\n"
     else
@@ -329,7 +331,7 @@ class Menu
     end
   end
 
-  def to_forward_and_back_station
+  def to_forward_and_back_station # rubocop:disable Metrics/AbcSize
     puts 'Какой поезд необходимо переместить?'
     enumeration(trains)
     name = accept_command.to_i
@@ -360,7 +362,7 @@ class Menu
     end
   end
 
-  def attach_the_wagon
+  def attach_the_wagon # rubocop:disable Metrics/AbcSize
     if trains.empty? || wagons.empty?
       puts "Сначала необходимо создать обьекты!\n\n"
     else
@@ -424,7 +426,7 @@ class Menu
     end
   end
 
-  def take_up_volume
+  def take_up_volume # rubocop:disable Metrics/AbcSize
     puts 'Выберите вагон, в котором хотите занять объем:'
     enumeration(wagons)
     wagon = wagons[accept_command.to_i - 1]
