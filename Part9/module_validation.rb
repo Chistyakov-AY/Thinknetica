@@ -9,7 +9,6 @@ module Validation
 
     def validate(name, type, *params)
       @validations ||= []
-      #@validations << { variable: name, type: validation, options: params.first }
       @validations << { variable_name: name, validation_type: type, params: params.first }
     end
   end
