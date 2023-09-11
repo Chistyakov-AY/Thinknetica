@@ -38,16 +38,27 @@ class Station
     trains.select { |i| i.type == type }
   end
 
-  def trains_block(trains, &block)
-    block.call(trains)
-  end
+  # def trains_block(trains, &block)
+  #   block.call(trains)
+  # end
 
   def trains_each
-    trains_block(@trains) do |x|
-      x.each do |i|
-        puts "Номер поезда: #{i.number} || Тип поезда: #{i.type} || " \
-             "Количество вагонов: #{i.wagons.length}"
-      end
+    if self.trains.empty?
+      puts "На станции нет поездов!"
+    else
+      self.trains.each do |value|
+        puts "Номер поезда: #{value.number} || Тип поезда: #{value.type} || " \
+             "Количество вагонов: #{value.wagons.length}"
+        end
     end
   end
+
+  # def trains_each
+  #   trains_block(@trains) do |x|
+  #     x.each do |i|
+  #       puts "Номер поезда: #{i.number} || Тип поезда: #{i.type} || " \
+  #            "Количество вагонов: #{i.wagons.length}"
+  #     end
+  #   end
+  # end
 end

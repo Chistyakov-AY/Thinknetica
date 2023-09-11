@@ -104,7 +104,7 @@ class Menu
   #---------------------------------------------------------------------
   def create_all_object # rubocop:disable Metrics/AbcSize
     puts 'Созданные станции:'
-    2.times { |x| stations << Station.new(x + 1) }
+    2.times { |x| stations << Station.new(x + 10) }
     enumeration(stations)
     puts 'Созданные поезда:'
     type_pass = { pass: 'pas-11', cargo: 'car-11' }
@@ -122,8 +122,8 @@ class Menu
     trains[1].add_wagon(wagons[2..3])
     enumeration(trains)
     puts 'Все поезда назначены на станции:'
-    stations[0].trains << trains[0..1]
-    stations[1].trains << trains[2..3]
+    stations[0].trains << trains[0]
+    stations[0].trains << trains[1]
     enumeration(stations)
     puts
     initial_menu
@@ -455,8 +455,7 @@ class Menu
   def show_trains_at_the_station
     puts 'На какой станции хотите просмотреть список поездов?'
     enumeration(stations)
-    station = gets.chomp.to_i
-    selected_station = stations[station - 1]
+    selected_station = stations[gets.chomp.to_i - 1]
     puts "Вы выбрали станцию: #{selected_station.name}.\n\n"
     puts 'Список поездов:'
     selected_station.trains_each
