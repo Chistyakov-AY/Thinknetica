@@ -69,8 +69,10 @@
 # p g[1..3]
 
 # при удалении возвращается значение
-arr = Array.new(10) { |i| i += 1}
-new_arr = []
-new_arr << arr.delete_at(0)
-p new_arr
-p arr
+# arr = Array.new(10) { |i| i += 1}
+# p arr
+# new_arr = []
+# new_arr << arr.delete_at(-2)
+# p new_arr
+# p arr
+
